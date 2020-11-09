@@ -37,6 +37,14 @@ int posicao(char palavra []) {
 	return (int) tolower(palavra[0]) - 97;
 }
 
+const char* toLowerCase(char str[]) {
+	for(int i = 0; str[i]; i++) {
+		str[i] = tolower(str[i]);
+	}
+	
+	return str;
+}
+
 // --- BALANCEAMENTO DA ARVORE --- //
 static int max(int e, int d) {
 	return e > d ? e : d;
@@ -320,7 +328,7 @@ void criaIndice(char *registrosbin, char *index) {
 				bool isDigit = (c >= '0' && c <= '9');
 
 				if (isDigit == false) {
-					insere(tags, hashtag, i);
+					insere(tags, (char*)toLowerCase(hashtag), i);
 				}
 				token = strtok(NULL, " ");
 			}
@@ -331,14 +339,6 @@ void criaIndice(char *registrosbin, char *index) {
 	escreve_todos_ordem(tags, index);
 	
 	fclose(fa);
-}
-
-const char* toLowerCase(char str[]) {
-	for(int i = 0; str[i]; i++) {
-		str[i] = tolower(str[i]);
-	}
-	
-	return str;
 }
 
 int main() {
